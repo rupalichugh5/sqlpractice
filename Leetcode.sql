@@ -180,3 +180,35 @@ select distinct a.num as ConsecutiveNums
 from logs a, logs b, logs c
 where (a.id = b.id+1 and a.num = b.num)
 and (a.id = c.id+2 and a.num = c.num)
+
+
+/*
+Table: Employee
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
+| salary      | int     |
+| managerId   | int     |
++-------------+---------+
+id is the primary key column for this table.
+Each row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.
+ 
+
+Write an SQL query to find the employees who earn more than their managers.
+
+Return the result table in any order.
+*/
+select e.name as 'Employee'
+from employee e
+join employee m
+on m.id = e.managerId
+where e.salary>m.salary
+
+select m.name as 'Employee'
+from employee e
+join employee m
+on e.id = m.managerId
+where e.salary<m.salary
