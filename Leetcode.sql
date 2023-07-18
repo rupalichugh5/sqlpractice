@@ -157,3 +157,26 @@ Return the result table ordered by score in descending order.
 
 */
 select score, dense_rank() over(order by score desc ) as 'rank' from scores
+
+
+/*
+Table: Logs
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| num         | varchar |
++-------------+---------+
+id is the primary key for this table.
+id is an autoincrement column.
+ 
+
+Write an SQL query to find all numbers that appear at least three times consecutively.
+
+Return the result table in any order
+*/
+select distinct a.num as ConsecutiveNums
+from logs a, logs b, logs c
+where (a.id = b.id+1 and a.num = b.num)
+and (a.id = c.id+2 and a.num = c.num)
